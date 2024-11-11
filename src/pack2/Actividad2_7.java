@@ -12,5 +12,5 @@ public class Actividad2_7 {
         public void run(){
 
         }
-    }//dfasgdfasghdfasyukdtjil
+    }
 }
