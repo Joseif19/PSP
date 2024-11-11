@@ -10,7 +10,11 @@ public class Actividad2_7 {
             contador = c;
         }
         public void run(){
-
+            for(int i = 0; i < 5000; i++){
+                contador++;
+            }
         }
     }
+
+
 }
