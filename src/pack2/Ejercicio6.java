@@ -19,7 +19,6 @@ public class Ejercicio6 extends Applet {
     class Letras extends Thread {
         private boolean stopHilo = false;
         int x, y, j;
-
         void PararHilo(boolean p) {
             this.stopHilo = p;
         }
