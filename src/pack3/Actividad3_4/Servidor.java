@@ -1,4 +1,4 @@
-package pack3.Actividad3_3;
+package pack3.Actividad3_4;
 
 import java.io.*;
 import java.net.*;
@@ -12,15 +12,21 @@ public class Servidor {
             Socket socketCliente = socketServidor.accept();
             System.out.println("Cliente conectado desde: " + socketCliente.getInetAddress());
 
-            PrintWriter pw = new PrintWriter(socketCliente.getOutputStream(), true);
             BufferedReader br = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
+            PrintWriter pw = new PrintWriter(socketCliente.getOutputStream(), true);
 
-            String mensajeServidor = "Buenassss Tardess";
-            System.out.println("Enviando: " + mensajeServidor);
-            pw.println(mensajeServidor);
+            String mensajeCliente = br.readLine();
+            System.out.println("Número recibido del cliente: " + mensajeCliente);
 
-            String respuesta = br.readLine();
-            System.out.println("Respuesta del cliente: " + respuesta);
+            try {
+                int n = Integer.parseInt(mensajeCliente);
+                int nCuadrado = n * n;
+                System.out.println("Enviando el cuadrado del número: " + nCuadrado);
+                pw.println(nCuadrado);
+            } catch (NumberFormatException e) {
+                System.out.println("Error: el cliente no envió un número válido.");
+                pw.println("Error: no es un número válido.");
+            }
 
             socketCliente.close();
             System.out.println("Conexión cerrada.");
@@ -29,4 +35,3 @@ public class Servidor {
         }
     }
 }
-

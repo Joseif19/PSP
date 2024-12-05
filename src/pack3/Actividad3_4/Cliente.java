@@ -1,7 +1,8 @@
-package pack3.Actividad3_3;
+package pack3.Actividad3_4;
 
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 public class Cliente {
     public static void main(String[] args) {
@@ -14,12 +15,15 @@ public class Cliente {
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter pw = new PrintWriter(socket.getOutputStream(), true);
 
-            String mensajeServidor = br.readLine();
-            System.out.println("Mensaje recibido del servidor: " + mensajeServidor);
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Introduce un número: ");
+            int n = sc.nextInt();
 
-            String mensajeMinusculas = mensajeServidor.toLowerCase();
-            System.out.println("Enviando el mensaje en minúsculas: " + mensajeMinusculas);
-            pw.println(mensajeMinusculas);
+            pw.println(n);
+            System.out.println("Número enviado al servidor: " + n);
+
+            String respuestaServidor = br.readLine();
+            System.out.println("Respuesta del servidor: " + respuestaServidor);
 
             System.out.println("Conexión cerrada.");
         } catch (IOException e) {
